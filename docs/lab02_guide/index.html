@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>KKU Campus Guide — แนะนำสถานที่มหาวิทยาลัยขอนแก่น</title>
+
+    <style>
+        :root {
+            --bg: #f2e8df;
+            /* สีพื้นอิฐอ่อน */
+            --card: #ffffff;
+            --muted: #6b5d55;
+            /* น้ำตาลตุ่น ๆ */
+            --accent: #b8472f;
+            /* อิฐเข้ม */
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        /* LOGO */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .logo svg {
+            width: 84px;
+            height: 84px;
+            display: block;
+            transition: transform .28s cubic-bezier(.2, .9, .3, 1);
+            filter: drop-shadow(0 6px 18px rgba(180, 70, 47, 0.18));
+        }
+
+        .logo .wordmark {
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            color: var(--card, #fff);
+            font-family: "Sarabun", "Noto Sans Thai", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* stroke-draw animation */
+        .logo .kk-path {
+            stroke: var(--accent, #b8472f);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: draw 1.2s ease forwards .12s;
+            transform-origin: center;
+        }
+
+        /* inner fill reveal */
+        .logo .kk-fill {
+            fill: var(--accent, #b8472f);
+            opacity: 0;
+            animation: fillIn .7s ease forwards 1.12s;
+        }
+
+        /* subtle bounce on entrance */
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fillIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* small pulse on hover */
+        .logo:hover svg {
+            transform: translateY(-4px) scale(1.04);
+        }
+
+        /* animated accent ring */
+        .logo .ring {
+            stroke: var(--accent, #b8472f);
+            stroke-width: 2;
+            opacity: .12;
+            fill: none;
+            transform-origin: center;
+            animation: ringPulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes ringPulse {
+            0% {
+                transform: scale(0.96);
+                opacity: .12
+            }
+
+            50% {
+                transform: scale(1.06);
+                opacity: .06
+            }
+
+            100% {
+                transform: scale(0.96);
+                opacity: .12
+            }
+        }
+
+        /* respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            .logo .kk-path,
+            .logo .kk-fill,
+            .logo .ring {
+                animation: none;
+                stroke-dashoffset: 0;
+                opacity: 1
+            }
+
+            .logo:hover svg {
+                transform: none;
+            }
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Thai', 'Sarabun', Arial;
+            background: linear-gradient(180deg, #f2e8df 0%, #e6d5c9 100%);
+            color: #3b2f2a;
+        }
+
+        header {
+            padding: 28px 20px;
+            background: linear-gradient(90deg, #b8472f 0%, #d45a42 100%);
+            color: white;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 18px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 26px
+        }
+
+        p.lead {
+            margin: 6px 0 0;
+            color: rgba(255, 255, 255, 0.9)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin-top: 18px
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(80, 40, 20, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover
+        }
+
+        .card-body {
+            padding: 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column
+        }
+
+        .card h3 {
+            margin: 0 0 6px;
+            font-size: 18px
+        }
+
+        .card p {
+            margin: 0 0 12px;
+            color: var(--muted);
+            line-height: 1.45
+        }
+
+        .meta {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.15s;
+        }
+
+        .btn:hover {
+            background: #9c3d29;
+        }
+
+        footer {
+            max-width: 1100px;
+            margin: 28px auto 60px;
+            padding: 20px;
+            color: #5b4a44;
+            text-align: center;
+        }
+
+        .hero {
+            display: flex;
+            gap: 18px;
+            align-items: center
+        }
+
+        .hero .left {
+            flex: 1;
+            display: flex;
+        }
+
+        @media (max-width:560px) {
+            header {
+                padding: 18px
+            }
+
+            h1 {
+                font-size: 20px
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: flex-start
+            }
+        }
+
+        .map {
+            height: 200px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, #ecd8c8, #f5e9df);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b2f2a;
+            font-weight: 600;
+        }
+
+        .kku-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 14px 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .kku-logo {
+            animation: float 3s ease-in-out infinite, glow 2.2s infinite;
+        }
+
+        .kku-text {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #b8472f;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* โลโก้ลอยขึ้นลง */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-6px)
+            }
+        }
+
+        /* Glow effect */
+        @keyframes glow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 2px #b8472f)
+            }
+
+            50% {
+                filter: drop-shadow(0 0 8px #d46d55)
+            }
+        }
+
+        /* Text animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <header>
+        <div class="container hero">
+            <div class="left">
+                <div class="kku-logo-wrapper">
+                    <!-- โลโก้ มข symbolic -->
+                    <svg class="kku-logo" width="84" height="84" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="#b8472f" opacity="0.95" />
+                        <path d="M50 18 
+                   L60 38 
+                   L55 38 
+                   L68 65 
+                   H58 
+                   L58 80 
+                   H42 
+                   L42 65 
+                   H32 
+                   L45 38 
+                   L40 38 Z" fill="white" style="filter: drop-shadow(0px 0px 4px rgba(255,255,255,0.7));" />
+                    </svg>
+                </div>
+
+                <div class="hero-text">
+                    <h1>KKU Campus Guide</h1>
+                    <p class="lead">เว็บแนะนำสถานที่สำคัญภายในมหาวิทยาลัยขอนแก่น — ภาพประกอบ คำอธิบาย และลิงก์สั้น ๆ
+                        เพื่อเริ่มสำรวจแคมปัส</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container">
+        <section>
+            <h2 style="margin:8px 0 12px">สถานที่แนะนำ</h2>
+            <div class="grid">
+
+                <!-- Card 1 -->
+                <article class="card">
+                    <img src="https://library.kku.ac.th/wp-content/uploads/2022/10/download-3.png"
+                        alt="KKU Central Library" />
+                    <div class="card-body">
+                        <h3>หอสมุดกลาง มหาวิทยาลัยขอนแก่น (KKU Central Library)</h3>
+                        <p>หอสมุดกลางเป็นศูนย์รวมองค์ความรู้ของมหาวิทยาลัย มีทั้งชั้นหนังสือ ห้องอ่าน ห้องประชุม
+                            และบริการทรัพยากรอิเล็กทรอนิกส์</p>
+                        <div class="meta">
+                            <a class="btn" href="#library">ดูเพิ่มเติม</a>
+                            <div style="color:var(--muted);font-size:13px">เปิด: ทุกวัน</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card">
+                    <img src="https://asset.kku.ac.th/wp-content/uploads/2022/04/%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3-1-%E0%B8%84%E0%B8%AD%E0%B8%A1%E0%B9%80%E0%B8%9E%E0%B8%A5%E0%B9%87%E0%B8%81%E0%B8%8B%E0%B9%8C-%E0%B8%99.%E0%B8%AA.%E0%B8%88%E0%B8%B8%E0%B8%91%E0%B8%B2%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%8C-%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%81%E0%B8%B8%E0%B8%A5-5-1024x768.jpg"
+                        alt="KKU Complex" />
+                    <div class="card-body">
+                        <h3>คอมเพล็กซ์ มข. (KKU Complex)</h3>
+                        <p>ศูนย์รวมร้านอาหาร คาเฟ่ บริการถ่ายเอกสาร ร้านค้าต่าง ๆ เหมาะกับการนั่งพัก นัดเพื่อน
+                            หรือทำงานเบา ๆ</p>
+                        <div class="meta">
+                            <a class="btn" href="#complex">ดูเพิ่มเติม</a>
+                            <div style="color:var(--muted);font-size:13px">ร้านค้าหลากหลาย</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=60"
+                        alt="Natural History Museum" />
+                    <div class="card-body">
+                        <h3>พิพิธภัณฑ์ธรรมชาติวิทยา มข.</h3>
+                        <p>จัดแสดงซากดึกดำบรรพ์ ตัวอย่างพืช สัตว์ และนิทรรศการด้านชีววิทยา
+                            เหมาะสำหรับการเรียนรู้แบบลงลึก</p>
+                        <div class="meta">
+                            <a class="btn" href="#museum">ดูเพิ่มเติม</a>
+                            <div style="color:var(--muted);font-size:13px">เปิดตามเวลาเฉพาะ</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="card">
+                    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=60"
+                        alt="Botanical Garden" />
+                    <div class="card-body">
+                        <h3>สวนพฤกษศาสตร์ มข. (Botanical Garden)</h3>
+                        <p>พื้นที่สีเขียวสำหรับพักผ่อน เดินเล่น ศึกษาพันธุ์ไม้ และทำกิจกรรมกลางแจ้ง</p>
+                        <div class="meta">
+                            <a class="btn" href="#garden">ดูเพิ่มเติม</a>
+                            <div style="color:var(--muted);font-size:13px">มีจุดถ่ายรูปเยอะ</div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Details -->
+        <section style="margin-top:18px;display:grid;grid-template-columns:1fr 320px;gap:18px">
+            <div>
+
+                <article id="library"
+                    style="background:white;padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(80,40,20,0.1)">
+                    <h3>หอสมุดกลาง — ข้อมูลเพิ่มเติม</h3>
+                    <p style="color:var(--muted)">มีบริการยืม-คืน หนังสือ ห้องอ่านกลุ่ม และคลังข้อมูลออนไลน์จำนวนมาก</p>
+                </article>
+
+                <article id="complex"
+                    style="background:white;margin-top:12px;padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(80,40,20,0.1)">
+                    <h3>คอมเพล็กซ์ — บริการที่มี</h3>
+                    <ul style="color:var(--muted);line-height:1.6;margin:8px 0 0;padding-left:18px">
+                        <li>ร้านอาหารและคาเฟ่</li>
+                        <li>บริการถ่ายเอกสาร</li>
+                        <li>ตู้ ATM และร้านค้าต่าง ๆ</li>
+                    </ul>
+                </article>
+
+                <article id="museum"
+                    style="background:white;margin-top:12px;padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(80,40,20,0.1)">
+                    <h3>พิพิธภัณฑ์ธรรมชาติวิทยา — เพิ่มเติม</h3>
+                    <p style="color:var(--muted)">จัดแสดงข้อมูลด้านชีววิทยา ธรณี และระบบนิเวศแบบหลากหลาย</p>
+                </article>
+
+                <article id="garden"
+                    style="background:white;margin-top:12px;padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(80,40,20,0.1)">
+                    <h3>สวนพฤกษศาสตร์ — เพิ่มเติม</h3>
+                    <p style="color:var(--muted)">เดินเล่น ออกกำลังกาย หรือศึกษาพรรณไม้ได้</p>
+                </article>
+
+            </div>
+
+            <aside>
+                <div class="map">แผนที่ (ตัวอย่าง)</div>
+
+                <div
+                    style="margin-top:12px;background:white;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(80,40,20,0.1)">
+                    <h4 style="margin:0 0 6px">ติดต่อ</h4>
+                    <div style="color:var(--muted)">มหาวิทยาลัยขอนแก่น<br>โทรศัพท์: +66 43 202000</div>
+                </div>
+            </aside>
+        </section>
+
+    </main>
+
+    <footer>
+        สร้างโดย KKU Campus Guide • หากต้องการเพิ่มสถานที่หรือแปลงเป็น React / Tailwind บอกได้เลย
+    </footer>
+
+    <script>
+        // smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+
+</html>
